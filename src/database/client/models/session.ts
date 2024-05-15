@@ -43,21 +43,11 @@ class _SessionModel extends BaseModel {
   }
 
   async queryWithGroups(): Promise<ChatSessionList> {
-    const groups = await SessionGroupModel.query();
-    const customGroups = await this.queryByGroupIds(groups.map((item) => item.id));
-    const defaultItems = await this.querySessionsByGroupId(SessionDefaultGroup.Default);
-    const pinnedItems = await this.getPinnedSessions();
+    const sessionGroups = await SessionGroupModel.query();
 
-    const all = await this.query();
-    return {
-      all,
-      customGroup: groups.map((group) => ({
-        ...group,
-        children: customGroups[group.id],
-      })),
-      default: defaultItems,
-      pinned: pinnedItems,
-    };
+    const sessions = await this.query();
+
+    return { sessionGroups, sessions };
   }
 
   /**
@@ -91,15 +81,15 @@ class _SessionModel extends BaseModel {
   async queryByKeyword(keyword: string): Promise<LobeSessions> {
     if (!keyword) return [];
 
-    console.time('queryByKeyword');
+    const startTime = Date.now();
     const keywordLowerCase = keyword.toLowerCase();
 
     // First, filter sessions by title and description
     const matchingSessionsPromise = this.table
       .filter((session) => {
         return (
-          session.meta.title.toLowerCase().includes(keywordLowerCase) ||
-          session.meta.description.toLowerCase().includes(keywordLowerCase)
+          session.meta.title?.toLowerCase().includes(keywordLowerCase) ||
+          session.meta.description?.toLowerCase().includes(keywordLowerCase)
         );
       })
       .toArray();
@@ -122,7 +112,7 @@ class _SessionModel extends BaseModel {
     //  match topics
     const matchingTopicsPromise = this.db.topics
       .filter((topic) => {
-        return topic.title.toLowerCase().includes(keywordLowerCase);
+        return topic.title?.toLowerCase().includes(keywordLowerCase);
       })
       .toArray();
 
@@ -149,7 +139,7 @@ class _SessionModel extends BaseModel {
       .anyOf([...combinedSessionIds])
       .toArray();
 
-    console.timeEnd('queryByKeyword');
+    console.log(`检索到 ${items.length} 项，耗时 ${Date.now() - startTime}ms`);
     return this.mapToAgentSessions(items);
   }
 
@@ -169,6 +159,10 @@ class _SessionModel extends BaseModel {
 
   async isEmpty() {
     return (await this.table.count()) === 0;
+  }
+
+  async count() {
+    return this.table.count();
   }
 
   // **************** Create *************** //
@@ -238,10 +232,6 @@ class _SessionModel extends BaseModel {
     return super._updateWithSync(id, data);
   }
 
-  async updatePinned(id: string, pinned: boolean) {
-    return this.update(id, { pinned: pinned ? 1 : 0 });
-  }
-
   async updateConfig(id: string, data: DeepPartial<LobeAgentConfig>) {
     const session = await this.findById(id);
     if (!session) return;
@@ -264,6 +254,7 @@ class _SessionModel extends BaseModel {
   private DB_SessionToAgentSession(session: DBModel<DB_Session>) {
     return {
       ...session,
+      model: session.config.model,
       pinned: !!session.pinned,
     } as LobeAgentSession;
   }
