@@ -5,6 +5,7 @@ import {
   DeepSeek,
   Google,
   Groq,
+  LobeHub,
   Minimax,
   Mistral,
   Moonshot,
@@ -12,7 +13,9 @@ import {
   OpenAI,
   OpenRouter,
   Perplexity,
+  Stepfun,
   Together,
+  Tongyi,
   ZeroOne,
   Zhipu,
 } from '@lobehub/icons';
@@ -27,6 +30,10 @@ interface ModelProviderIconProps {
 
 const ModelProviderIcon = memo<ModelProviderIconProps>(({ provider }) => {
   switch (provider) {
+    case 'lobehub': {
+      return <LobeHub.Color size={20} />;
+    }
+
     case ModelProvider.ZhiPu: {
       return <Zhipu size={20} />;
     }
@@ -38,7 +45,7 @@ const ModelProviderIcon = memo<ModelProviderIconProps>(({ provider }) => {
     case ModelProvider.DeepSeek: {
       return <DeepSeek size={20} />;
     }
-    
+
     case ModelProvider.Google: {
       return (
         <Center height={20} width={20}>
@@ -97,6 +104,14 @@ const ModelProviderIcon = memo<ModelProviderIconProps>(({ provider }) => {
 
     case ModelProvider.TogetherAI: {
       return <Together size={20} />;
+    }
+
+    case ModelProvider.Qwen: {
+      return <Tongyi size={20} />;
+    }
+
+    case ModelProvider.Stepfun: {
+      return <Stepfun size={20} />;
     }
 
     default: {

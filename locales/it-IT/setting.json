@@ -2,6 +2,14 @@
   "about": {
     "title": "Informazioni"
   },
+  "agentTab": {
+    "chat": "Preferenze di chat",
+    "meta": "Informazioni assistente",
+    "modal": "Impostazioni modello",
+    "plugin": "Impostazioni plugin",
+    "prompt": "Impostazioni ruolo",
+    "tts": "Servizio vocale"
+  },
   "analytics": {
     "telemetry": {
       "desc": "Attivando l'invio dei dati di telemetria, ci aiuti a migliorare complessivamente l'esperienza utente di LobeChat",
@@ -35,6 +43,11 @@
     "title": "Impostazioni"
   },
   "llm": {
+    "apiKey": {
+      "desc": "Inserisci la tua chiave API {{name}}",
+      "placeholder": "Chiave API {{name}}",
+      "title": "Chiave API"
+    },
     "checker": {
       "button": "Verifica",
       "desc": "Verifica se la chiave API e l'indirizzo del proxy sono stati inseriti correttamente",
@@ -101,14 +114,6 @@
     },
     "waitingForMore": "Altri modelli sono in fase di <1> pianificazione per l'integrazione </1>, resta sintonizzato ✨"
   },
-  "ollama": {
-    "download": {
-      "desc": "Ollama sta scaricando questo modello. Si prega di non chiudere questa pagina. Il download verrà ripreso dal punto in cui è stato interrotto in caso di riavvio.",
-      "remainingTime": "Tempo rimanente",
-      "speed": "Velocità di download",
-      "title": "Download del modello {{model}} in corso"
-    }
-  },
   "plugin": {
     "addTooltip": "Aggiungi plugin personalizzato",
     "clearDeprecated": "Rimuovi plugin non validi",
@@ -174,6 +179,7 @@
     "enableHistoryCount": {
       "alias": "Illimitato",
       "limited": "Include solo {{number}} messaggi di conversazione",
+      "setlimited": "Imposta il numero di messaggi storici da utilizzare",
       "title": "Limita il numero di messaggi storici",
       "unlimited": "Numero illimitato di messaggi storici"
     },
@@ -359,6 +365,19 @@
       "title": "Sincronizzazione WebRTC"
     }
   },
+  "systemAgent": {
+    "title": "Assistente di sistema",
+    "topic": {
+      "label": "Modello di denominazione degli argomenti",
+      "modelDesc": "Modello designato per la ridenominazione automatica degli argomenti",
+      "title": "Ridenominazione automatica degli argomenti"
+    },
+    "translation": {
+      "label": "Modello di traduzione",
+      "modelDesc": "Modello specificato per la traduzione",
+      "title": "Impostazioni dell'assistente di traduzione"
+    }
+  },
   "tab": {
     "about": "Informazioni",
     "agent": "Assistente predefinito",
@@ -366,6 +385,7 @@
     "experiment": "实验",
     "llm": "Modello linguistico",
     "sync": "云端同步",
+    "system-agent": "Assistente di sistema",
     "tts": "Servizio vocale"
   },
   "tools": {

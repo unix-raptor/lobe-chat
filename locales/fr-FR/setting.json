@@ -2,6 +2,14 @@
   "about": {
     "title": "À propos"
   },
+  "agentTab": {
+    "chat": "Préférences de discussion",
+    "meta": "Informations de l'agent",
+    "modal": "Paramètres du modèle",
+    "plugin": "Paramètres du plugin",
+    "prompt": "Configuration du rôle",
+    "tts": "Service vocal"
+  },
   "analytics": {
     "telemetry": {
       "desc": "En choisissant d'envoyer des données de télémétrie, vous pouvez nous aider à améliorer l'expérience utilisateur globale de LobeChat",
@@ -35,6 +43,11 @@
     "title": "Paramètres"
   },
   "llm": {
+    "apiKey": {
+      "desc": "Veuillez saisir votre clé API {{name}}",
+      "placeholder": "Clé API {{name}}",
+      "title": "Clé API"
+    },
     "checker": {
       "button": "Vérifier",
       "desc": "Vérifie si la clé API et l'adresse du proxy sont correctement renseignées",
@@ -101,14 +114,6 @@
     },
     "waitingForMore": "Plus de modèles sont en cours de <1>planification pour être ajoutés</1>, restez à l'écoute ✨"
   },
-  "ollama": {
-    "download": {
-      "desc": "Ollama est en train de télécharger ce modèle. Veuillez ne pas fermer cette page. Le téléchargement reprendra là où il s'est arrêté en cas de reprise.",
-      "remainingTime": "Temps restant",
-      "speed": "Vitesse de téléchargement",
-      "title": "Téléchargement du modèle {{model}} en cours"
-    }
-  },
   "plugin": {
     "addTooltip": "Ajouter un plugin personnalisé",
     "clearDeprecated": "Effacer les plugins obsolètes",
@@ -174,6 +179,7 @@
     "enableHistoryCount": {
       "alias": "Illimité",
       "limited": "Inclure uniquement {{number}} messages de conversation",
+      "setlimited": "Définir le nombre de messages d'historique",
       "title": "Limite du nombre de messages historiques",
       "unlimited": "Aucune limite sur le nombre de messages historiques"
     },
@@ -359,6 +365,19 @@
       "title": "Synchronisation WebRTC"
     }
   },
+  "systemAgent": {
+    "title": "Agent système",
+    "topic": {
+      "label": "Modèle de nommage des sujets",
+      "modelDesc": "Modèle spécifié pour le renommage automatique des sujets",
+      "title": "Renommage automatique des sujets"
+    },
+    "translation": {
+      "label": "Modèle de traduction",
+      "modelDesc": "Modèle spécifié pour la traduction",
+      "title": "Paramètres de l'agent de traduction"
+    }
+  },
   "tab": {
     "about": "À propos",
     "agent": "Agent par défaut",
@@ -366,6 +385,7 @@
     "experiment": "Expérience",
     "llm": "Modèle de langue",
     "sync": "Synchronisation cloud",
+    "system-agent": "Agent système",
     "tts": "Service vocal"
   },
   "tools": {
